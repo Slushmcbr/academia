@@ -1,0 +1,124 @@
+<div class="container-fluid">
+        <div class="row">
+
+        <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h4> <i class="material-icons">language</i>
+                        Cadastro de Produtos</h4>
+                    </div>
+                    <div class="card-body">
+                        <form name="formProduto" ng-submit="salvaProduto(dados.produto)">
+                                    <div class="form-group row">
+                                      <label for="name" class="col-4 col-form-label">Nome*</label> 
+                                      <div class="col-8">
+                                        <input id="name" name="name" placeholder="Nome do Produto" 
+                                        ng-model="dados.produto.nome" type="text" class="form-control">
+                                      </div>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label for="codigobarra" class="col-4 col-form-label">Codigo de barras</label> 
+                                      <div class="col-8">
+                                        <input id="codigobarra" name="codigobarra" 
+                                        ng-model="dados.produto.codigobarra"
+                                        mask="9.999999.999999"
+                                        pattern="[0-9]{1}[.][0-9]{6}[.][0-9]{6}"
+                                        placeholder="9.999999.9999999" type="text" class="form-control">
+                                      </div>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label for="descricao" class="col-4 col-form-label">Descricao</label> 
+                                      <div class="col-8">
+                                        <textarea id="descricao" name="descricao" cols="40" 
+                                        placeholder="Descricao do Produto" ng-model="dados.produto.descricao"
+                                        rows="3" class="form-control"></textarea>
+
+                                      </div>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label for="preco" class="col-4 col-form-label">Preco</label> 
+                                      <div class="col-8">
+                                        <div class="input-group">
+                                          <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                              <i class="fa fa-address-card"></i>
+                                            </div>
+                                          </div> 
+                                          <input id="preco" name="preco" type="number" step="0.01" min="0" ng-model="dados.produto.preco" title="Informe um preco para o produto" class="form-control">
+
+                                        </div> {{dados.produto}}
+                                      </div>
+                                    </div> 
+                                    <div class="form-group row">
+                                      <div class="offset-4 col-8">
+                                        <button name="submit" type="submit" class="btn btn-success"><i class="material-icons">save</i>Salvar</button>
+                                        <a href="#!menu" class="btn btn-danger">Voltar</a> 
+                                      </div>
+                                    </div>
+                                  </form>
+                    </div>
+                    
+                    <div class="card-footer bg-primary text-white">
+                        <small>Campos marcados com * são obrigatórios</small>
+                    </div>
+                </div>
+                
+
+        </div>
+        <div class="col-md-12">
+            <!-- coluna da tabela -->
+            <div class="card card-primary">
+               <div class="card-header bg-secondary text-white">
+                   <h4><i class="material-icons">list</i>Edição/Alteração dos Produtos</h4>
+               </div>
+               <div class="card-body">
+                   <table class="table table-bordered" ng-init="carregaProdutos()">
+                       <tr>
+                           <!-- linha do cabeçalho -->
+                           <th>Nome</th>
+                           <th>Endereço</th>
+                           <th>Pacote</th>
+                           <th>CodCliente</th>
+                           <th>Peso</th>
+                           <th>Altura</th>
+                           <th>CPF</th>
+                           <th>Criado em</th>
+                           <th>Opções</th>
+                       </tr>
+                       <tr ng-repeat="produto in dados.produtos">
+                           <!-- linhas dos dados -->
+                           <td>{{produto.nome}}</td>
+                           <td>{{produto.descricao}}</td>
+                           <td>{{produto.codigobarra}}</td>
+                           <td>{{produto.preco | currency}}</td>
+                           <td>{{produto.createdAt | date:'shortDate'}}</td>
+                           <td>{{produto.codigobarra}}</td>
+                           <td>{{produto.preco | currency}}</td>
+                           <td>{{produto.createdAt | date:'shortDate'}}</td>
+                           <td>
+                               <button type="button" class="btn btn-primary btn-sm"
+                                   ng-click="obtemProdutoPeloId(produto._id)" title="Editar o produto atual">
+                                   <i class="material-icons">edit</i>
+                               </button>
+                               <button type="button" class="btn btn-danger btn-sm"
+                                   ng-click="confirmaExclusaoProduto(produto)" title="Apagar o produto atual">
+                                   <i class="material-icons">delete</i>
+                               </button>
+                           </td>
+                       </tr>
+                   </table>
+               </div>
+               <div class="card-footer">
+                   <p ng-hide="dados.produtos.length == 0">
+                       Total de Registros: {{dados.produtos.length}}
+                   </p>
+                   <p ng-show="dados.produtos.length == 0">
+                       Ainda não existe nenhum produto cadastrado!
+                   </p>
+               </div>
+           </div>
+       </div>
+       
+
+        </div>
+</div>

@@ -1,0 +1,47 @@
+<div class="container-fluid">
+        <div class="row">
+            <div class="col-md-10">
+        <!-- coluna da tabela -->
+        <div class="card card-primary">
+           <div class="card-header bg-secondary text-white">
+               <h4><i class="material-icons">list</i>Lista de Todos Produtos</h4>
+           </div>
+           <div class="card-body">
+               <table class="table table-bordered" ng-init="carregaProdutos()">
+                   <tr>
+                       <!-- linha do cabeçalho -->
+                       <th>Nome</th>
+                       <th>Endereço</th>
+                       <th>Pacote</th>
+                       <th>CodCliente</th>
+                       <th>Peso</th>
+                       <th>Altura</th>
+                       <th>CPF</th>
+                       <th>Criado em</th>
+                   </tr>
+                   <tr ng-repeat="produto in dados.produtos">
+                       <!-- linhas dos dados -->
+                       <td>{{produto.nome}}</td>
+                       <td>{{produto.descricao}}</td>
+                       <td>{{produto.codigobarra}}</td>
+                       <td>{{produto.preco | currency}}</td>
+                       <td>{{produto.createdAt | date:'shortDate'}}</td>
+                       <td>{{produto.codigobarra}}</td>
+                       <td>{{produto.preco | currency}}</td>
+                       <td>{{produto.createdAt | date:'shortDate'}}</td>
+
+                   </tr>
+               </table>
+           </div>
+           <div class="card-footer">
+               <p ng-hide="dados.produtos.length == 0">
+                   Total de Registros: {{dados.produtos.length}}
+               </p>
+               <p ng-show="dados.produtos.length == 0">
+                   Ainda não existe nenhum produto cadastrado!
+               </p>
+           </div>
+       </div>
+   </div>
+   </div>
+   </div>
