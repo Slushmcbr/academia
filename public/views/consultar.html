@@ -1,43 +1,45 @@
 <div class="container-fluid">
         <div class="row">
-            <div class="col-md-10">
+            <div class="col-md-12">
         <!-- coluna da tabela -->
         <div class="card card-primary">
            <div class="card-header bg-secondary text-white">
-               <h4><i class="material-icons">list</i>Lista de Todos Produtos</h4>
+               <h4><i class="material-icons">list</i>Lista de Todos Clientes</h4>
            </div>
            <div class="card-body">
-               <table class="table table-bordered" ng-init="carregaProdutos()">
+               <table class="table table-bordered" ng-init="carregaClientes()">
                    <tr>
                        <!-- linha do cabeçalho -->
                        <th>Nome</th>
                        <th>Endereço</th>
                        <th>Pacote</th>
                        <th>CodCliente</th>
+                       <th>Preço</th>
+                       <th>Idade</th>
                        <th>Peso</th>
                        <th>Altura</th>
-                       <th>CPF</th>
                        <th>Criado em</th>
                    </tr>
-                   <tr ng-repeat="produto in dados.produtos">
+                   <tr ng-repeat="cliente in dados.clientes">
                        <!-- linhas dos dados -->
-                       <td>{{produto.nome}}</td>
-                       <td>{{produto.descricao}}</td>
-                       <td>{{produto.codigobarra}}</td>
-                       <td>{{produto.preco | currency}}</td>
-                       <td>{{produto.createdAt | date:'shortDate'}}</td>
-                       <td>{{produto.codigobarra}}</td>
-                       <td>{{produto.preco | currency}}</td>
-                       <td>{{produto.createdAt | date:'shortDate'}}</td>
+                       <td>{{cliente.nome}}</td>
+                       <td>{{cliente.endereco}}</td>
+                       <td>{{cliente.pacote}}</td>
+                       <td>{{cliente.codcliente}}</td>
+                       <td>{{cliente.preco | currency}}</td>
+                       <td>{{cliente.idade}}</td>
+                       <td>{{cliente.peso}}</td>
+                       <td>{{cliente.altura | currency}}</td>
+                       <td>{{cliente.createdAt | date:'shortDate'}}</td>
 
                    </tr>
                </table>
            </div>
            <div class="card-footer">
-               <p ng-hide="dados.produtos.length == 0">
+               <p ng-hide="dados.clientes.length == 0">
                    Total de Registros: {{dados.produtos.length}}
                </p>
-               <p ng-show="dados.produtos.length == 0">
+               <p ng-show="dados.clientes.length == 0">
                    Ainda não existe nenhum produto cadastrado!
                </p>
            </div>

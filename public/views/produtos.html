@@ -5,57 +5,86 @@
                 <div class="card">
                     <div class="card-header bg-primary text-white">
                         <h4> <i class="material-icons">language</i>
-                        Cadastro de Produtos</h4>
+                        Cadastro de Clientes</h4>
                     </div>
                     <div class="card-body">
-                        <form name="formProduto" ng-submit="salvaProduto(dados.produto)">
-                                    <div class="form-group row">
-                                      <label for="name" class="col-4 col-form-label">Nome*</label> 
-                                      <div class="col-8">
-                                        <input id="name" name="name" placeholder="Nome do Produto" 
-                                        ng-model="dados.produto.nome" type="text" class="form-control">
-                                      </div>
-                                    </div>
-                                    <div class="form-group row">
-                                      <label for="codigobarra" class="col-4 col-form-label">Codigo de barras</label> 
-                                      <div class="col-8">
-                                        <input id="codigobarra" name="codigobarra" 
-                                        ng-model="dados.produto.codigobarra"
-                                        mask="9.999999.999999"
-                                        pattern="[0-9]{1}[.][0-9]{6}[.][0-9]{6}"
-                                        placeholder="9.999999.9999999" type="text" class="form-control">
-                                      </div>
-                                    </div>
-                                    <div class="form-group row">
-                                      <label for="descricao" class="col-4 col-form-label">Descricao</label> 
-                                      <div class="col-8">
-                                        <textarea id="descricao" name="descricao" cols="40" 
-                                        placeholder="Descricao do Produto" ng-model="dados.produto.descricao"
-                                        rows="3" class="form-control"></textarea>
-
-                                      </div>
-                                    </div>
-                                    <div class="form-group row">
-                                      <label for="preco" class="col-4 col-form-label">Preco</label> 
-                                      <div class="col-8">
-                                        <div class="input-group">
-                                          <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                              <i class="fa fa-address-card"></i>
-                                            </div>
-                                          </div> 
-                                          <input id="preco" name="preco" type="number" step="0.01" min="0" ng-model="dados.produto.preco" title="Informe um preco para o produto" class="form-control">
-
-                                        </div> {{dados.produto}}
-                                      </div>
-                                    </div> 
-                                    <div class="form-group row">
-                                      <div class="offset-4 col-8">
-                                        <button name="submit" type="submit" class="btn btn-success"><i class="material-icons">save</i>Salvar</button>
-                                        <a href="#!menu" class="btn btn-danger">Voltar</a> 
-                                      </div>
-                                    </div>
-                                  </form>
+                      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
+                      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+                      
+                      <form name="formCliente" ng-submit="salvaCliente(dados.cliente)">
+                        <div class="form-group row">
+                          <label class="col-4 col-form-label" for="nome">Nome*</label> 
+                          <div class="col-8">
+                            <input id="nome" name="nome" type="text" aria-describedby="nomeHelpBlock" ng-model="dados.cliente.nome" class="form-control"> 
+                            <span id="nomeHelpBlock" class="form-text text-muted">Nome completo</span>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="endereco" class="col-4 col-form-label">Endereço*</label> 
+                          <div class="col-8">
+                            <textarea id="endereco" name="endereco" cols="40" rows="5" class="form-control" ng-model="dados.cliente.endereco"></textarea>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label class="col-4">Pacote</label> 
+    <div class="col-8">
+      <div class="custom-control custom-radio custom-control-inline">
+        <input name="pacote" id="pacote_0" type="radio" class="custom-control-input" value="A" ng-model="dados.cliente.pacote"> 
+        <label for="pacote_0" class="custom-control-label">A</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input name="pacote" id="pacote_1" type="radio" class="custom-control-input" value="B" ng-model="dados.cliente.pacote"> 
+        <label for="pacote_1" class="custom-control-label">B</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input name="pacote" id="pacote_2" type="radio" class="custom-control-input" value="C" ng-model="dados.cliente.pacote"> 
+        <label for="pacote_2" class="custom-control-label">C</label>
+      </div>
+    </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="codcliente" class="col-4 col-form-label">Codigo do Cliente*</label> 
+                          <div class="col-8">
+                            <input id="codcliente" name="codcliente" type="text" class="form-control" ng-model="dados.cliente.codcliente">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="preco" class="col-4 col-form-label">Preço*</label> 
+                          <div class="col-8">
+                            <input id="preco" name="preco" type="number" class="form-control" step="0.10" ng-model="dados.cliente.preco" title="Informe um preço">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="idade" class="col-4 col-form-label">Idade*</label> 
+                          <div class="col-8">
+                            <input id="idade" name="idade" type="text" class="form-control" ng-model="dados.cliente.idade">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="peso" class="col-4 col-form-label">Peso*</label> 
+                          <div class="col-8">
+                            <input id="peso" name="peso" type="text" class="form-control" ng-model="dados.cliente.peso">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="altura" class="col-4 col-form-label">Altura*</label> 
+                          <div class="col-8">
+                            <input id="altura" name="altura" type="text" class="form-control" ng-model="dados.cliente.altura">
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <label for="CPF" class="col-4 col-form-label">CPF*</label> 
+                          <div class="col-8">
+                            <input id="CPF" name="CPF" type="text" class="form-control" ng-model="dados.cliente.CPF">
+                          </div>
+                        </div> 
+                        <div class="form-group row">
+                          <div class="offset-4 col-8">
+                            <button name="submit" type="submit" class="btn btn-success"><i class="material-icons">save</i>Salvar</button>
+                            <a href="#!menu" class="btn btn-danger">Voltar</a> 
+                          </div>
+                        </div>
+                      </form>
                     </div>
                     
                     <div class="card-footer bg-primary text-white">
@@ -64,44 +93,63 @@
                 </div>
                 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         </div>
         <div class="col-md-12">
             <!-- coluna da tabela -->
             <div class="card card-primary">
                <div class="card-header bg-secondary text-white">
-                   <h4><i class="material-icons">list</i>Edição/Alteração dos Produtos</h4>
+                   <h4><i class="material-icons">list</i>Edição/Alteração dos Clientes</h4>
                </div>
                <div class="card-body">
-                   <table class="table table-bordered" ng-init="carregaProdutos()">
+                   <table class="table table-bordered" ng-init="carregaClientes()">
                        <tr>
                            <!-- linha do cabeçalho -->
                            <th>Nome</th>
                            <th>Endereço</th>
                            <th>Pacote</th>
                            <th>CodCliente</th>
+                           <th>Preço</th>
+                           <th>Idade</th>
                            <th>Peso</th>
                            <th>Altura</th>
                            <th>CPF</th>
                            <th>Criado em</th>
                            <th>Opções</th>
                        </tr>
-                       <tr ng-repeat="produto in dados.produtos">
+                       <tr ng-repeat="cliente in dados.clientes">
                            <!-- linhas dos dados -->
-                           <td>{{produto.nome}}</td>
-                           <td>{{produto.descricao}}</td>
-                           <td>{{produto.codigobarra}}</td>
-                           <td>{{produto.preco | currency}}</td>
-                           <td>{{produto.createdAt | date:'shortDate'}}</td>
-                           <td>{{produto.codigobarra}}</td>
-                           <td>{{produto.preco | currency}}</td>
-                           <td>{{produto.createdAt | date:'shortDate'}}</td>
+                           <td>{{cliente.nome}}</td>
+                           <td>{{cliente.endereco}}</td>
+                           <td>{{cliente.pacote}}</td>
+                           <td>{{cliente.codcliente}}</td>
+                           <td>{{cliente.preco | currency}}</td>
+                           <td>{{cliente.idade}}</td>
+                           <td>{{cliente.peso}}</td>
+                           <td>{{cliente.altura}}</td>
+                           <td>{{cliente.CPF}}</td>
+                           <td>{{cliente.createdAt | date:'shortDate'}}</td>
                            <td>
                                <button type="button" class="btn btn-primary btn-sm"
-                                   ng-click="obtemProdutoPeloId(produto._id)" title="Editar o produto atual">
+                                   ng-click="obtemClientePeloId(cliente._id)" title="Editar o cliente atual">
                                    <i class="material-icons">edit</i>
                                </button>
                                <button type="button" class="btn btn-danger btn-sm"
-                                   ng-click="confirmaExclusaoProduto(produto)" title="Apagar o produto atual">
+                                   ng-click="confirmaExclusaoCliente(cliente)" title="Apagar o cliente atual">
                                    <i class="material-icons">delete</i>
                                </button>
                            </td>
@@ -109,11 +157,11 @@
                    </table>
                </div>
                <div class="card-footer">
-                   <p ng-hide="dados.produtos.length == 0">
-                       Total de Registros: {{dados.produtos.length}}
+                   <p ng-hide="dados.clientes.length == 0">
+                       Total de Registros: {{dados.clientes.length}}
                    </p>
-                   <p ng-show="dados.produtos.length == 0">
-                       Ainda não existe nenhum produto cadastrado!
+                   <p ng-show="dados.clientes.length == 0">
+                       Ainda não existe nenhum cliente cadastrado!
                    </p>
                </div>
            </div>

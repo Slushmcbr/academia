@@ -37,20 +37,20 @@ app.controller('estoqueController',
          *              
          */    
          //funcao para salvar os produtos
-         $scope.salvaProduto = function (produto) {
+         $scope.salvaCliente = function (cliente) {
             //já existe o _id no produto?
-            if (produto._id === undefined) { //se não te, é POST
+            if (cliente._id === undefined) { //se não te, é POST
                 $http({
                     method: 'post',
-                    url: urlBase + '/produtos',
-                    data: produto
+                    url: urlBase + '/clientes',
+                    data: cliente
                 }).then(function (response) {
                     $scope.mensagem = {
                         cor: 'success',
-                        titulo: 'Produto incluído com sucesso!'
+                        titulo: 'Cliente incluído com sucesso!'
                     }
                     //atualizar o array de produtos
-                    getProdutos()
+                    getClientes()
                 }, function (error) {
                     $scope.mensagem = {
                         cor: 'danger',
@@ -60,15 +60,15 @@ app.controller('estoqueController',
             } else {
                 $http({
                     method: 'put',
-                    url: urlBase + '/produtos/' + produto._id,
-                    data: produto
+                    url: urlBase + '/clientes/' + cliente._id,
+                    data: cliente
                 }).then(function (response) {
                     $scope.mensagem = {
                         cor: 'success',
-                        titulo: 'Produto alterado com sucesso!'
+                        titulo: 'Cliente alterado com sucesso!'
                     }
                     //atualizar o array de produtos
-                    getProdutos()
+                    getClientes()
                 }, function (error) {
                     $scope.mensagem = {
                         cor: 'danger',
@@ -79,18 +79,18 @@ app.controller('estoqueController',
         }
 
         // Apaga o produto
-        $scope.confirmaExclusaoProduto = function (produto) {
+        $scope.confirmaExclusaoCliente = function (cliente) {
             //vamos confirmr se o usuario quer apagar mesmo
-            if (confirm('Confirma a exclisão do produto ' + produto.nome + ' ?')) {
+            if (confirm('Confirma a exclisão do cliente ' + cliente.nome + ' ?')) {
                 $http({
                     method: 'delete',
-                    url: urlBase + '/produtos/' + produto._id
+                    url: urlBase + '/clientes/' + cliente._id
                 }).then(function (response) {
                     $scope.mensagem = {
                         cor: 'success',
                         titulo: response.data.message
                     }
-                    getProdutos() //atualizar a listagem
+                    getClientes() //atualizar a listagem
                 }, function (error) {
                     $scope.mensagem = {
                         cor: 'danger',
@@ -101,34 +101,34 @@ app.controller('estoqueController',
         }
 
         // Carrega todos os produtos
-        $scope.carregaProdutos = function () {
-            getProdutos();
+        $scope.carregaClientes = function () {
+            getClientes();
         };
-        function getProdutos() {
-            $scope.dados = { produtos: null, produto: null }
+        function getClientes() {
+            $scope.dados = { clientes: null, cliente: null }
             $http({
                 method: 'get',
-                url: urlBase + '/produtos'
+                url: urlBase + '/clientes'
             }).then(function (response) {
-                $scope.dados = { produtos: response.data }
+                $scope.dados = { clientes: response.data }
             }, function (error) {
-                $scope.mensagem = { cor: 'danger', titulo: 'Não foi possível obter os produtos. Verifique o backend!' + error.data.message }
+                $scope.mensagem = { cor: 'danger', titulo: 'Não foi possível obter os clientes. Verifique o backend!' + error.data.message }
             })
         }
         // Carrega os dados do produto pelo Id para a edição
-        $scope.obtemProdutoPeloId = function (idProduto) {
+        $scope.obtemClientePeloId = function (idCliente) {
             $http({
                 method: 'get',
-                url: urlBase + '/produtos/' + idProduto
+                url: urlBase + '/clientes/' + idCliente
             }).then(function (response) {
-                $scope.dados = { produto: response.data, produtos: $scope.dados.produtos }
+                $scope.dados = { cliente: response.data, clientes: $scope.dados.clientes }
             }, function (error) {
                 $scope.mensagem = { cor: 'danger', titulo: error.data.message }
             });
         }
 
         /*========================================================
-        * FIM das Funções relacionados aos PRODUTOS
+        * FIM das Funções relacionados aos CLIENTES
         ========================================================*/   
     });
 

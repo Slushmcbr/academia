@@ -8,5 +8,5 @@ app.use(express.static('public'))
 
 //iremos ouvir o servidor na porta especificada
 app.listen(3002, function(){
-    console.log('Servidor WEB do Front end rodando na porta 3001')
+    console.log('Servidor WEB do Front end rodando na porta 3002')
 })
